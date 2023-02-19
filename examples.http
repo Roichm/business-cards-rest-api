@@ -1,0 +1,66 @@
+@local=http://localhost:3000
+
+@token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2M2ViOWQ0ZDJiY2VlOTBiMTE1Yzc2ODIiLCJiaXoiOnRydWUsImlhdCI6MTY3NjU2NzE5MH0.mUU20qgmmvHZmuGxHEZbpbo-PiFtG9D6FQTfFXx7aqg
+
+### register a new user
+POST {{local}}/users/
+Content-Type: application/json
+
+{
+    "name": "asya", 
+    "email": "asya@a.com",
+    "password": "123456", 
+    "biz": true
+}
+
+### authenticate (login) an existing user
+POST {{local}}/auth/
+Content-Type: application/json
+
+{
+    "email":"asya@a.com",
+    "password": "123456"
+}
+
+### get logged in user's information
+GET {{local}}/users/me
+x-auth-token: {{token}}
+
+### create new card
+POST {{local}}/cards/
+x-auth-token: {{token}}
+Content-Type: application/json
+
+{
+"bizName": "na na",
+"bizDescription": "banana",
+"bizAddress": "Lemondae Av. pinky street",
+"bizPhone": "0548785222",
+"bizImage": "http://myimages.com/kddk"
+}
+
+### get card
+GET {{local}}/cards/63f20f68378dbe4087ab8262
+x-auth-token: {{token}}
+
+### put card
+PUT {{local}}/cards/63f20f68378dbe4087ab8262
+x-auth-token: {{token}}
+Content-Type: application/json
+
+{
+"bizName": "lemonade2222",
+"bizDescription": "lemonade banana",
+"bizAddress": "Lemondae Av.1, banana street",
+"bizPhone": "0542222222",
+"bizImage": "http://myimages.com/banana"
+}
+
+### delete card
+DELETE {{local}}/cards/63f20f68378dbe4087ab8262
+x-auth-token: {{token}}
+
+### get cards of user
+GET {{local}}/cards/my-cards
+x-auth-token: {{token}}
+
